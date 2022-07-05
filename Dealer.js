@@ -3,6 +3,8 @@ class Dealer {
         this.person = person;
         this.currency = currency;
         this.listOfCars = [];
+        this.soldCars = 0;
+        this.profit = 0;
     }
 
     myNameIs() {
@@ -48,13 +50,16 @@ class Dealer {
         if (index > this.listOfCars.length) {
             return `SORRY! There is no such car for sale :(`
         } else {
-            this.listOfCars.splice(index - 1, 1)
+            let newList = this.listOfCars.splice(index - 1, 1)
+            this.soldCars++;
+            this.profit += newList[0].price
             return `Wow! ${this.listOfCars[index - 1].model} sold for ${this.formatMoney(this.listOfCars[index - 1].price)}!`
         }
     }
 
-
-
+    fortune() {
+        return `${this.person} has sold ${this.soldCars} cars for total of ${this.profit} EUR!`
+    }
 }
 
 export { Dealer }
